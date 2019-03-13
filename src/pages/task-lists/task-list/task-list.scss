@@ -1,0 +1,7 @@
+@import "../../../theme/variables.scss";
+
+page-task-list {
+    .is-done {
+        color: color($colors, primary)
+    }
+}

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons>
+      <button ion-button (click)="dismissModal()">Close</button>
+      <button ion-button (click)="onDeleteList()">Delete</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-title>{{ taskList.name }}</ion-title>
+  <ion-list>
+    <ion-item [ngClass]="{'is-done': task.isDone, 'is-not-done': !task.isDone}" *ngFor="let task of taskList.tasks">
+      <ion-label>{{task.name}}</ion-label>
+      <ion-checkbox (ionChange)="onDoneStateChanged()" [(ngModel)]="task.isDone"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="newTaskName" placeholder="New task"></ion-input>
+    <button ion-button small (click)="onCreateTask()" item-end>Add</button>
+  </ion-item>
+</ion-content>
