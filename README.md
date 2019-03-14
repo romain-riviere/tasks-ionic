@@ -1,27 +1,15 @@
-Simple Ionic/Angular app for tasks hangling
+Simple Ionic/Angular app for tasks handling
 
 # To build the app
 
 ## Clone this repo
-`git clone ...`
+`git clone https://github.com/romain-riviere/tasks-ionic.git`
 
 ## Follow these steps to get a firebase project's config
 `https://firebase.google.com/docs/web/setup`
 
-## Create the firebase config file
-Create the file in src/config/firebase.config.ts
-Copy-paste your firebase configuration in this file like the following :
-
-```js
-export const FIREBASE_CONFIG = {
-    apiKey: "AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    authDomain: "tasks-XXXXXXXX.firebaseapp.com",
-    databaseURL: "https://tasks-XXXXXXXX.firebaseio.com",
-    projectId: "tasks-XXXXXXXX",
-    storageBucket: "tasks-XXXXXXXX.appspot.com",
-    messagingSenderId: "XXXXXXXXXXXX"
-};
-```
+## Add your firebase configuration
+Change src/config/firebase.config.ts to match your firebase configuration.
 
 ## In the project's directory
 ### Install the ionic cli
