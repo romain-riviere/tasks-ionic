@@ -16,16 +16,29 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-spinner *ngIf="taskListsLoading"></ion-spinner>
-  <ion-list>
-    <button ion-item icon-start *ngFor="let taskList of taskLists; let i = index" (click)="onLoadTaskList(i)">
-      {{ taskList.name }}
-      <ion-badge *ngIf="taskList.toDoCount > 0" item-end color="danger">{{ taskList.toDoCount }}</ion-badge>
-    </button>
-  </ion-list>
-
-  <ion-item>
-    <ion-input type="text" [(ngModel)]="newTaskListName" placeholder="New list name"></ion-input>
-    <button ion-button small (click)="onCreateTaskList()" item-end>Add</button>
-  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-spinner *ngIf="taskListsLoading"></ion-spinner>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <button ion-item icon-start *ngFor="let taskList of taskLists; let i = index" (click)="onLoadTaskList(i)">
+            {{ taskList.name }}
+            <ion-badge *ngIf="taskList.toDoCount > 0" item-end color="danger">{{ taskList.toDoCount }}</ion-badge>
+          </button>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="newTaskListName" placeholder="New list name"></ion-input>
+          <button ion-button small (click)="onCreateTaskList()" item-end>Add</button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

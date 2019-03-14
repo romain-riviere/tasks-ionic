@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons>
+      <button ion-button (click)="dismissModal()">Close</button>
+      <button ion-button (click)="onDeleteRecurrentTask()">Delete</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="recurrentTask.task.name" placeholder="New task"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Task Hour</ion-label>
+          <ion-datetime displayFormat="HH:mm" [(ngModel)]="recurrentTask.time"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="daysRow">
+      <ion-col class="dayCol" *ngFor="let day of recurrentTask.days" (click)="onToggleDay(day)">
+        <ion-label>{{day.name}}</ion-label>
+        <ion-checkbox [(ngModel)]="day.isSelected"></ion-checkbox>
+      </ion-col>
+    </ion-row>
+    <ion-row class="saveButtonRow">
+      <ion-col>
+        <button ion-button success block (click)="onSaveRecurrentTask()">Save</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

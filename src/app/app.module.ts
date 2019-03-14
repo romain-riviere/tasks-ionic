@@ -15,6 +15,7 @@ import { TaskListsPage } from '../pages/task-lists/task-lists';
 import { TaskListPage } from '../pages/task-lists/task-list/task-list';
 import { RecurrentTasksPage } from '../pages/recurrent-tasks/recurrent-tasks';
 import { ToastHelper } from '../helpers/toast.helper';
+import { RecurrentTaskPage } from '../pages/recurrent-tasks/recurrent-task/recurrent-task';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ToastHelper } from '../helpers/toast.helper';
     TaskListsPage,
     TaskListPage,
     RecurrentTasksPage,
+    RecurrentTaskPage,
     AuthPage,
   ],
   imports: [
@@ -38,6 +40,7 @@ import { ToastHelper } from '../helpers/toast.helper';
     TaskListsPage,
     TaskListPage,
     RecurrentTasksPage,
+    RecurrentTaskPage,
     AuthPage,
   ],
   providers: [

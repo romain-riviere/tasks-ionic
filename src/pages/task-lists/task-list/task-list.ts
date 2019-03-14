@@ -37,6 +37,7 @@ export class TaskListPage {
 
   onCreateTask() {
     if (this.newTaskName && this.newTaskName !== '') {
+      if (!this.taskList.tasks) this.taskList.tasks = [];
       this.taskList.tasks.push(new Task(this.newTaskName));
       this.newTaskName = '';
       this.taskListsService.saveTaskLists();

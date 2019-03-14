@@ -1,0 +1,19 @@
+page-recurrent-task {
+    ion-grid {
+        height: 100%;
+        .daysRow{
+            align-items: center;
+            .dayCol{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .label-md {
+                    margin: 5px;
+                }
+            }
+        }
+        .saveButtonRow{
+            margin-top: auto;
+        }
+    }
+}

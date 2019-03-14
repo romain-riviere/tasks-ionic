@@ -16,5 +16,26 @@
 </ion-header>
 
 <ion-content padding>
-  Recurrent Tasks
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <ion-spinner *ngIf="recurrentTasksLoading"></ion-spinner>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <button ion-item icon-start *ngFor="let recurrentTask of recurrentTasks; let i = index"
+            (click)="onLoadRecurrentTask(recurrentTask.uuid)">
+            {{ recurrentTask.task.name }}
+          </button>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button block (click)="onCreateRecurrentTask()">New Task</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

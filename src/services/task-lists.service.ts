@@ -13,7 +13,6 @@ export class TaskListsService {
     saveTaskLists() {
         return new Promise((resolve, reject) => {
             const uid = firebase.auth().currentUser.uid;
-            console.log(this.taskLists);
             this.taskLists.map((taskList) => {
                 var count = 0;
                 if (taskList.tasks) {

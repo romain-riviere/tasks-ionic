@@ -3,17 +3,17 @@ import * as firebase from 'firebase';
 import { RecurrentTask } from '../models/RecurrentTask';
 
 export class RecurrentTasksService {
-    recurrentTaskList$ = new Subject<RecurrentTask[]>();
+    recurrentTasks$ = new Subject<RecurrentTask[]>();
+    recurrentTasks: RecurrentTask[] = [];
 
-    recurrentTaskList: RecurrentTask[];
-
-    emitRecurrentTaskLists() {
-        this.recurrentTaskList$.next(this.recurrentTaskList);
+    emitRecurrentTasks() {
+        this.recurrentTasks$.next(this.recurrentTasks);
     }
 
-    saveRecurrentTaskLists() {
+    saveRecurrentTasks() {
         return new Promise((resolve, reject) => {
-            firebase.database().ref('recurrentTaskList').set(this.recurrentTaskList).then(
+            const uid = firebase.auth().currentUser.uid;
+            firebase.database().ref('recurrentTasks/' + uid).set(this.recurrentTasks).then(
                 (data) => {
                     resolve(data);
                 },
@@ -24,17 +24,60 @@ export class RecurrentTasksService {
         });
     }
 
-    retrieveRecurrentTaskLists() {
+    retrieveRecurrentTasks() {
         return new Promise((resolve, reject) => {
-            firebase.database().ref('recurrentTaskList').once('value').then(
-                (data) => {
-                    this.recurrentTaskList = data.val();
-                    this.emitRecurrentTaskLists();
-                    resolve('Données récupérées avec succès !');
-                }, (error) => {
-                    reject(error);
-                }
-            );
-        });
+            if (firebase.auth().currentUser !== null) {
+                const uid = firebase.auth().currentUser.uid;
+                firebase.database().ref('recurrentTasks/' + uid).once('value').then(
+                    (data) => {
+                        if (data.val() !== null) {
+                            this.recurrentTasks = data.val();
+                        } else {
+                            this.recurrentTasks = [];
+                        }
+                        this.emitRecurrentTasks();
+                        resolve('Données récupérées avec succès !');
+                    }, (error) => {
+                        reject(error);
+                    }
+                );
+            } else {
+                reject('USER_UNDEFINED');
+            }
+        })
     }
+
+    getRecurrentTaskByUUID(uuid: string): RecurrentTask {
+        var returnTask;
+        this.recurrentTasks.map((task) => {
+            if (task.uuid === uuid) returnTask = task;
+        });
+        return returnTask;
+    }
+
+    addRecurrentTask(recurrentTask: RecurrentTask) {
+        this.recurrentTasks.push(recurrentTask);
+        this.emitRecurrentTasks();
+        this.saveRecurrentTasks();
+    }
+
+    updateRecurrentTask(recurrentTask: RecurrentTask) {
+        this.recurrentTasks.map((task) => {
+            if (task.uuid === recurrentTask.uuid) return recurrentTask;
+        })
+        this.emitRecurrentTasks();
+        this.saveRecurrentTasks();
+
+    }
+
+    deleteRecurrentTask(recurrentTask: RecurrentTask) {
+        const indexToRemove = this.recurrentTasks.indexOf(recurrentTask);
+        if (indexToRemove !== -1) {
+            this.recurrentTasks.splice(indexToRemove, 1);
+            this.emitRecurrentTasks();
+            this.saveRecurrentTasks();
+        }
+    }
+
+
 }
