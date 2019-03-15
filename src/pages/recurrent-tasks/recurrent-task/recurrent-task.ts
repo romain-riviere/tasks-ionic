@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 import { RecurrentTask } from '../../../models/RecurrentTask';
 import { RecurrentTasksService } from '../../../services/recurrent-tasks.service';
+import { AlarmHelper } from '../../../helpers/alarm.helper';
 
 /**
  * Generated class for the TaskListsPage page.
@@ -23,6 +24,7 @@ export class RecurrentTaskPage {
     public navParams: NavParams,
     public recurrentTasksService: RecurrentTasksService,
     public viewCtrl: ViewController,
+    public alarmHelper: AlarmHelper,
   ) { }
 
   ngOnInit() {
@@ -54,6 +56,7 @@ export class RecurrentTaskPage {
           this.recurrentTasksService.addRecurrentTask(this.recurrentTask);
           break;
       }
+      this.alarmHelper.addRecurrentTaskAlarm(this.recurrentTask);
       this.dismissModal();
     }
   }

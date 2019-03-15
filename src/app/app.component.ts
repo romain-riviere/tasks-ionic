@@ -27,7 +27,11 @@ export class MyApp {
     private menuCtrl: MenuController
   ) {
     platform.ready().then(() => {
-      statusBar.styleDefault();
+      if (platform.is('android')) {
+        statusBar.styleBlackOpaque();
+      } else {
+        statusBar.styleDefault();
+      }
       splashScreen.hide();
     });
     firebase.initializeApp(FirebaseConfig.FIREBASE_CONFIG);

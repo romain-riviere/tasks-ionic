@@ -16,6 +16,8 @@ import { TaskListPage } from '../pages/task-lists/task-list/task-list';
 import { RecurrentTasksPage } from '../pages/recurrent-tasks/recurrent-tasks';
 import { ToastHelper } from '../helpers/toast.helper';
 import { RecurrentTaskPage } from '../pages/recurrent-tasks/recurrent-task/recurrent-task';
+import { AlarmHelper } from '../helpers/alarm.helper';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { RecurrentTaskPage } from '../pages/recurrent-tasks/recurrent-task/recur
     RecurrentTasksService,
     AuthService,
     ToastHelper,
+    AlarmHelper,
+    LocalNotifications,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

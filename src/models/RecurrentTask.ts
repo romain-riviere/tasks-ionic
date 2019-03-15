@@ -7,24 +7,31 @@ export class RecurrentTask {
     days = [
         {
             name: 'Monday',
+            dayCode: 1,
             isSelected: false
         }, {
             name: 'Tuesday',
+            dayCode: 2,
             isSelected: false
         }, {
             name: 'Wednesday',
+            dayCode: 3,
             isSelected: false
         }, {
             name: 'Thursday',
+            dayCode: 4,
             isSelected: false
         }, {
             name: 'Friday',
+            dayCode: 5,
             isSelected: false
         }, {
             name: 'Saturday',
+            dayCode: 6,
             isSelected: false
         }, {
             name: 'Sunday',
+            dayCode: 0,
             isSelected: false
         },
     ];
